@@ -1,0 +1,53 @@
+{
+  "posts": [
+    {
+      "post": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi odit, obcaecati voluptate autem animi nulla culpa facere omnis vel maiores quae exercitationem nostrum quos similique!",
+      "userId": 1,
+      "id": 3
+    },
+    {
+      "post": "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+      "userId": 1,
+      "id": 5
+    },
+    {
+      "post": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero fuga quisquam nihil officia mollitia velit magnam facilis. Quibusdam at nostrum quaerat eum omnis odit reiciendis totam, voluptatem.",
+      "userId": 2,
+      "id": 6
+    },
+    {
+      "post": "Digidigidaw",
+      "userId": 1,
+      "id": 7
+    },
+    {
+      "post": "Awe awe",
+      "userId": 1,
+      "id": 8
+    },
+    {
+      "post": "lkasncaksdo",
+      "userId": 1,
+      "id": 9
+    },
+    {
+      "post": "coba edit tweet ini",
+      "userId": 1,
+      "id": 10
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Siska Ernita",
+      "username": "siskae_",
+      "imgURL": "https://randomuser.me/api/portraits/women/11.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Afui",
+      "username": "mieayamenak",
+      "imgURL": "https://randomuser.me/api/portraits/men/67.jpg"
+    }
+  ]
+}
