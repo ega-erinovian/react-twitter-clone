@@ -70,7 +70,7 @@ const PostComp: FC<PostProps> = ({
             ))}
             <li
               className="flex items-center gap-2 hover:text-white hover:cursor-pointer transition-all"
-              onClick={() => (post.id ? handleEditMode(post.id) : null)}>
+              onClick={() => post.id && handleEditMode(post.id)}>
               <GoPencil />
             </li>
             <button

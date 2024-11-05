@@ -2,49 +2,32 @@
 import axios from "axios";
 
 // React
-import { useEffect, useRef, useState } from "react";
-
-// types
-import Post from "../types/post";
-import User from "../types/user";
+import { useRef, useState } from "react";
 
 // React Toastify
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useFormik } from "formik";
-import { postsURL, usersURL, validationSchema } from "../constants";
+import { postsURL, validationSchema } from "../constants";
 
 // Images
 import PillButton from "../components/PillButton";
 import PostComp from "../components/PostComp";
+import useGetAllPosts from "../hooks/useGetAllPosts";
+import useGetAllUsers from "../hooks/useGetAllUsers";
 
 const Home = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
   const [editPost, setEditPost] = useState<{ isEditing: boolean; id: number }>({
     isEditing: false,
     id: 0,
   });
-  const [users, setUsers] = useState<User[]>([]);
+
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const getAllData = async () => {
-    try {
-      const { data } = await axios.get(postsURL);
-      setPosts([...data]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { posts, setPosts, getAllData } = useGetAllPosts();
 
-  const getAllUsers = async () => {
-    try {
-      const { data } = await axios.get(usersURL);
-      setUsers([...data]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { users, getAllUsers } = useGetAllUsers();
 
   const getPostIndex = (id: number) => {
     return posts.findIndex((element) => element.id === id);
@@ -141,11 +124,6 @@ const Home = () => {
     },
   });
 
-  useEffect(() => {
-    getAllData();
-    getAllUsers();
-  }, []);
-
   return (
     <>
       <div className="col-span-2 border-e-2 border-[#2f3336] min-h-screen h-full">
@@ -174,13 +152,13 @@ const Home = () => {
                       : inputRef.current?.value.length}
                     / 200
                   </p>
-                  {editPost.isEditing ? (
+                  {editPost.isEditing && (
                     <button
                       onClick={cancelEdit}
                       className="underline underline-offset-4 text-red-600 hover:text-red-500">
                       Cancel
                     </button>
-                  ) : null}
+                  )}
                   <PillButton title="Post" />
                 </div>
               </div>
@@ -189,6 +167,7 @@ const Home = () => {
           <div className="flex flex-col-reverse">
             {posts.map((post) => (
               <PostComp
+                key={post.id}
                 post={post}
                 users={users}
                 handleDelete={handleDelete}
